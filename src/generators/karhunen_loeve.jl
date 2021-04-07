@@ -3,10 +3,10 @@
 """
     KarhunenLoeve(n)
 
-Returns a [`GaussianRandomFieldGenerator`](@ref) using a Karhunen-Loève (KL) expansion with `n` terms.
+Returns a [`GaussianRandomFieldGenerator`](@ref) using a Karhunen-Loève (KL) expansion with `n` terms. 
 
 # Optional Arguments for `GaussianRandomField`
-- `quad::QuadratureRule`: quadrature rule used for the integral equation (see [`QuadratureRule`](@ref)), default is `EOLE()`.
+- `quad::QuadratureRule`: quadrature rule used for the integral equation (see [`QuadratureRule`](@ref)), default is `EOLE()`. 
 - `nq::Integer`: number of quadrature points in each dimension, where we require `nq^d > n`. Default is `nq = ceil(n^(1/d))`.
 - `eigensolver::EigenSolver`: which method to use for the eigenvalue decomposition (see [`AbstractEigenSolver`](@ref)). The default is `EigenSolver()`.
 
@@ -111,7 +111,7 @@ function _GaussianRandomField(mean, cov::CovarianceFunction{d}, method::Karhunen
     m = findfirst(x -> x < 0, eigenval)
     if m != nothing
         m -= 1
-        @warn "$(length(eigenval) - m) negative eigenvalues ≥ $(eigenval[end]) detected,
+        @warn "$(length(eigenval) - m) negative eigenvalues ≥ $(eigenval[end]) detected, 
             Gaussian random field will be approximated (ignoring all negative eigenvalues)"
     else
         m = n
@@ -121,10 +121,10 @@ function _GaussianRandomField(mean, cov::CovarianceFunction{d}, method::Karhunen
     eigenfunc = eigenfunc[:, 1:m]
 
     for id=1:m
-if(eigenfunc[1,id]<0)
-    eigenfunc[:,id]=eigenfunc[:,id].*-1
-end
-end
+    if(eigenfunc[1,id]<0)
+        eigenfunc[:,id]=eigenfunc[:,id].*-1
+    end
+    end
 
     # store eigenvalues and eigenfunctions
     eigenval .= sqrt.(eigenval) # note: store sqrt of eigenval for more efficient sampling

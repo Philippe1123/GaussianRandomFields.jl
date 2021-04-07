@@ -1,6 +1,6 @@
 name = "GaussianRandomFields"
 uuid = "e4b2fa32-6e09-5554-b718-106ed5adafe9"
-version = "2.1.2"
+version = "2.1.1"
 
 [deps]
 Arpack = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
@@ -12,11 +12,11 @@ SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
-Arpack = "0.4, 0.5"
+Arpack = "0.4"
 FFTW = "1.2"
 FastGaussQuadrature = "0.4"
 RecipesBase = "1.0"
-SpecialFunctions = "0.10, 1.0"
+SpecialFunctions = "0.10"
 julia = "1"
 
 [extras]
